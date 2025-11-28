@@ -1,71 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Magic Page</title>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday</title>
+
+  <style>
     body {
-        background: #000;
-        height: 100vh;
-        overflow: hidden;
-        margin: 0;
-        font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('bg.jpg') no-repeat center center/cover;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
     }
 
-    .popup {
-        position: absolute;
-        color: #ff69b4;
-        font-size: 28px;
-        font-weight: bold;
-        animation: fadeout 5s forwards;
-        text-shadow: 0 0 10px #fff;
+    h1 {
+      margin-top: 50px;
+      font-size: 40px;
+      color: #fff;
+      text-shadow: 2px 2px 5px black;
     }
 
-    @keyframes fadeout {
-        0% { opacity: 1; }
-        100% { opacity: 0; }
+    #cake {
+      width: 250px;
+      margin-top: 30px;
+      animation: float 3s infinite ease-in-out;
     }
-</style>
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    .msg {
+      font-size: 24px;
+      color: yellow;
+      margin-top: 20px;
+      text-shadow: 1px 1px 3px black;
+    }
+  </style>
 </head>
 <body>
 
-<script>
-// Random messages list
-const messages = [
-    "Love your Smile 💖",
-    "You are Amazing ✨",
-    "Stay Happy! 😊",
-    "You're Special 🌟",
-    "Keep Shining 💫",
-    "You Make the World Better ❤️",
-    "Stay Strong 💪",
-    "Be Yourself 🌸",
-    "You're a Blessing 💕"
-];
+  <h1>🎉 Happy Birthday! 🎉</h1>
 
-// Function to create random popup text
-function createPopup() {
-    const popup = document.createElement("div");
-    popup.className = "popup";
+  <img id="cake" src="cake.png" alt="Birthday Cake">
 
-    // Random message
-    popup.textContent = messages[Math.floor(Math.random() * messages.length)];
+  <div class="msg">Tap anywhere to start the music 🎵</div>
 
-    // Random position
-    popup.style.left = Math.random() * (window.innerWidth - 200) + "px";
-    popup.style.top = Math.random() * (window.innerHeight - 100) + "px";
+  <!-- 🔊 AUDIO PART (THIS WILL PLAY ON TAP) -->
+  <audio id="bgMusic" preload="auto">
+    <source src="happy_birthday.mp3" type="audio/mpeg">
+  </audio>
 
-    document.body.appendChild(popup);
-
-    // Remove after 5 seconds
-    setTimeout(() => {
-        popup.remove();
-    }, 5000);
-}
-
-// Create a new message every 1.5 seconds
-setInterval(createPopup, 1500);
-</script>
+  <script>
+    document.addEventListener("click", function() {
+      const audio = document.getElementById("bgMusic");
+      audio.volume = 1.0;
+      if (audio.paused) audio.play();
+    });
+  </script>
 
 </body>
 </html>
