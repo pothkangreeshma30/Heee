@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Magic Page</title>
+<style>
+    body {
+        background: #000;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .popup {
+        position: absolute;
+        color: #ff69b4;
+        font-size: 28px;
+        font-weight: bold;
+        animation: fadeout 5s forwards;
+        text-shadow: 0 0 10px #fff;
+    }
+
+    @keyframes fadeout {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<script>
+// Random messages list
+const messages = [
+    "Love your Smile 💖",
+    "You are Amazing ✨",
+    "Stay Happy! 😊",
+    "You're Special 🌟",
+    "Keep Shining 💫",
+    "You Make the World Better ❤️",
+    "Stay Strong 💪",
+    "Be Yourself 🌸",
+    "You're a Blessing 💕"
+];
+
+// Function to create random popup text
+function createPopup() {
+    const popup = document.createElement("div");
+    popup.className = "popup";
+
+    // Random message
+    popup.textContent = messages[Math.floor(Math.random() * messages.length)];
+
+    // Random position
+    popup.style.left = Math.random() * (window.innerWidth - 200) + "px";
+    popup.style.top = Math.random() * (window.innerHeight - 100) + "px";
+
+    document.body.appendChild(popup);
+
+    // Remove after 5 seconds
+    setTimeout(() => {
+        popup.remove();
+    }, 5000);
+}
+
+// Create a new message every 1.5 seconds
+setInterval(createPopup, 1500);
+</script>
+
+</body>
+</html>
